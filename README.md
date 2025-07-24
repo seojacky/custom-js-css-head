@@ -6,6 +6,7 @@ A lightweight WordPress plugin that allows you to add custom JavaScript and CSS 
 ![PHP](https://img.shields.io/badge/PHP-7.0%2B-purple.svg)
 ![License](https://img.shields.io/badge/License-GPL%20v2-green.svg)
 ![Version](https://img.shields.io/badge/Version-1.0-orange.svg)
+![Downloads](https://img.shields.io/github/downloads/seojacky/custom-js-css-head/total?color=brightgreen)
 
 ## Description
 
