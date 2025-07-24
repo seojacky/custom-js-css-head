@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Custom JS&CSS in Head 
- * Description: Adds a custom JS&CSS meta box to the post editor and inserts the JS code into the head section with priority 11.
- * Version: 1.0
+ * Description: Adds a custom JS&CSS meta box to the post editor and inserts the JS code into the head section.
+ * Version: 0.5
  * Author: seojacky
  * Author URI: https://github.com/seojacky/
  * Plugin URI: https://github.com/seojacky/custom-js-css-head/
