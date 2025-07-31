@@ -3,7 +3,7 @@ Contributors: seojacky
 Tags: javascript, css, head, custom code, meta, seo, tracking
 Requires at least: 4.0
 Tested up to: 6.4
-Stable tag: 0.5
+Stable tag: 1.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,8 @@ Custom JS&CSS in Head is a lightweight WordPress plugin that allows you to add c
 
 
 == Changelog ==
+= 1.2 - 31.07.2025 =
+* Added Multilingual compatibility
 
 = 1.0 - 24.07.2025 =
 * Initial release
