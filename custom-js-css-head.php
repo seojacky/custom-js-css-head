@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Custom JS&CSS in Head 
+ * Plugin Name: WP Booster: Custom JS&CSS in Head
  * Description: Adds a custom JS&CSS meta box to the post editor and inserts the JS code into the head section.
- * Version: 1.2
+ * Version: 1.3
  * Author: seojacky
  * Author URI: https://github.com/seojacky/
  * Plugin URI: https://github.com/seojacky/custom-js-css-head/
@@ -28,21 +28,29 @@ class Custom_JS_Head_Multilingual {
     public function __construct() {
         // Add meta box to post edit screen
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
-        
+
         // Save meta box data
         add_action('save_post', array($this, 'save_meta_box'), 10, 2);
-        
+
         // Add custom JS to head
         add_action('wp_head', array($this, 'output_custom_js'), 11);
-        
+
         // Add WPGlobus compatibility if active
         if ($this->is_wpglobus_active()) {
             // Add support for multilingual meta fields
             add_filter('wpglobus_multilingual_meta_keys', array($this, 'add_multilingual_meta_key'));
         }
-        
+
         // Enqueue admin scripts
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
+
+        // Add admin menu hooks
+        add_action('admin_menu', array($this, 'create_parent_menu'), 9);
+        add_action('admin_menu', array($this, 'add_settings_page'));
+        add_action('admin_head', array($this, 'hide_first_submenu'));
+
+        // Add settings link on plugins page
+        add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'add_settings_link'));
     }
     
     /**
@@ -152,11 +160,105 @@ jQuery(document).ready(function($) {
     
     /**
      * Check if WPGlobus is active
-     * 
+     *
      * @return bool
      */
     private function is_wpglobus_active() {
         return class_exists('WPGlobus') && class_exists('WPGlobus_Core');
+    }
+
+    /**
+     * Create WP Booster parent menu if it doesn't exist
+     */
+    public function create_parent_menu() {
+        global $admin_page_hooks;
+
+        if (isset($admin_page_hooks['wp-booster'])) {
+            return;
+        }
+
+        add_menu_page(
+            'WP Booster',
+            'WP Booster',
+            'manage_options',
+            'wp-booster',
+            array($this, 'render_settings_page'),
+            'dashicons-backup',
+            92.3
+        );
+    }
+
+    /**
+     * Hide first submenu item
+     */
+    public function hide_first_submenu() {
+        echo '<style>
+        .toplevel_page_wp-booster li.wp-first-item {
+            display: none;
+        }
+        </style>';
+    }
+
+    /**
+     * Add settings page to admin menu
+     */
+    public function add_settings_page() {
+        add_submenu_page(
+            'wp-booster',
+            'Custom JS&CSS in Head',
+            '<span class="dashicons dashicons-editor-code"></span>JS&CSS Head',
+            'manage_options',
+            'custom-js-css-head',
+            array($this, 'render_settings_page')
+        );
+    }
+
+    /**
+     * Render settings page
+     */
+    public function render_settings_page() {
+        ?>
+        <div class="wrap">
+            <h1>Custom JS&CSS in Head</h1>
+            <p>This plugin allows you to add custom JavaScript and CSS code to the head section of individual posts and pages.</p>
+
+            <div class="card">
+                <h2>How to use:</h2>
+                <ol>
+                    <li>Edit any post or page</li>
+                    <li>Scroll down to the "Custom JS for Head Section" meta box</li>
+                    <li>Enter your custom JavaScript or CSS code</li>
+                    <li>Save the post/page</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>Features:</h2>
+                <ul>
+                    <li>✓ Add custom JS and CSS to individual posts/pages</li>
+                    <li>✓ Support for WPGlobus multilingual functionality</li>
+                    <li>✓ Code is inserted in the &lt;head&gt; section with priority 11</li>
+                    <li>✓ Perfect for Schema.org markup, tracking codes, and custom scripts</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Plugin Information:</h2>
+                <p><strong>Version:</strong> 1.3</p>
+                <p><strong>Author:</strong> <a href="https://github.com/seojacky/" target="_blank">seojacky</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/seojacky/custom-js-css-head/" target="_blank">Plugin Repository</a></p>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Add settings link on plugins page
+     */
+    public function add_settings_link($links) {
+        $settings_link = '<a href="' . admin_url('admin.php?page=custom-js-css-head') . '">Settings</a>';
+        array_unshift($links, $settings_link);
+        return $links;
     }
     
     /**
