@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: WP Booster: Custom JS&CSS in Head 
+ * Plugin Name: WP Booster: Custom JS&CSS in Head
  * Description: Adds a custom JS&CSS meta box to the post editor and inserts the JS code into the head section.
- * Version: 1.2
+ * Version: 1.3
  * Author: seojacky
  * Author URI: https://github.com/seojacky/
  * Plugin URI: https://github.com/seojacky/custom-js-css-head/
@@ -244,7 +244,7 @@ jQuery(document).ready(function($) {
 
             <div class="card">
                 <h2>Plugin Information:</h2>
-                <p><strong>Version:</strong> 1.2</p>
+                <p><strong>Version:</strong> 1.3</p>
                 <p><strong>Author:</strong> <a href="https://github.com/seojacky/" target="_blank">seojacky</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/seojacky/custom-js-css-head/" target="_blank">Plugin Repository</a></p>
             </div>

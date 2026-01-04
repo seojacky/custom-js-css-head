@@ -1,9 +1,9 @@
-=== Custom JS&CSS in Head ===
+=== WP Booster: Custom JS&CSS in Head ===
 Contributors: seojacky
 Tags: javascript, css, head, custom code, meta, seo, tracking
 Requires at least: 4.0
 Tested up to: 6.4
-Stable tag: 1.2
+Stable tag: 1.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,10 @@ Custom JS&CSS in Head is a lightweight WordPress plugin that allows you to add c
 
 
 == Changelog ==
+= 1.3 - 04.01.2026 =
+* Added WP Booster parent menu integration
+* Added settings page with plugin information
+
 = 1.2 - 31.07.2025 =
 * Added Multilingual compatibility
 
